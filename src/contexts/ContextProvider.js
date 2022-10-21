@@ -14,10 +14,9 @@ const initialState = {
 
 export const ContextProvider = ({ children }) => {
   // application logic
-
   const [activeMenu, setActiveMenu] = useState(true);
-
   const [isClicked, setIsClicked] = useState(initialState);
+  const [screenSize, setScreenSize] = useState(undefined);
 
   //initialState returns an object, thus use a spread operator, and targetd the value you want to change [value] : boolean
 
@@ -35,6 +34,8 @@ export const ContextProvider = ({ children }) => {
         isClicked,
         setIsClicked,
         handleClick,
+        screenSize,
+        setScreenSize,
       }}
     >
       {children}

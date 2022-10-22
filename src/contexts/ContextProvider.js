@@ -17,6 +17,24 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
   const [screenSize, setScreenSize] = useState(undefined);
+  const [currentColor, setCurrentColor] = useState("#03c9d7");
+  const [currentMode, setCurrentMode] = useState("Light");
+  const [themeSettings, setThemeSettings] = useState(false);
+
+  //e.target.value : dont distructure coz the return value is a string thus use "color"
+  const setColor = (color) => {
+    setCurrentColor(color);
+    // when the user vists again the value with still be the same
+    localStorage.setItem("colorMode", color);
+    setThemeSettings(false);
+  };
+
+  const setMode = (e) => {
+    setCurrentMode(e.target.value);
+    // when the user vists again the value with still be the same
+    localStorage.setItem("themeMode", e.target.value);
+    setThemeSettings(false);
+  };
 
   //initialState returns an object, thus use a spread operator, and targetd the value you want to change [value] : boolean
 
@@ -36,6 +54,12 @@ export const ContextProvider = ({ children }) => {
         handleClick,
         screenSize,
         setScreenSize,
+        currentMode,
+        currentColor,
+        themeSettings,
+        setThemeSettings,
+        setColor,
+        setMode,
       }}
     >
       {children}
